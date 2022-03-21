@@ -6,7 +6,7 @@
     app:startDestination="@id/reminderListFragment">
     <fragment
         android:id="@+id/reminderListFragment"
-        android:name="com.rchang0501.rejuvenate.ReminderListFragment"
+        android:name="com.rchang0501.rejuvenate.reminderlistfragment.ReminderListFragment"
         android:label="@string/app_name"
         tools:layout="@layout/reminder_list_fragment" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/reminderDetailFragment"
-        android:name="com.rchang0501.rejuvenate.ReminderDetailFragment"
+        android:name="com.rchang0501.rejuvenate.reminderdetailfragment.ReminderDetailFragment"
         android:label="@string/reminder"
         tools:layout="@layout/reminder_detail_fragment" />
 </navigation>

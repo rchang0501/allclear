@@ -1,4 +1,4 @@
-package com.rchang0501.rejuvenate
+package com.rchang0501.rejuvenate.reminderlistfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
