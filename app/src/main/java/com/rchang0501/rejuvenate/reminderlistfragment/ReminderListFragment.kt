@@ -24,11 +24,6 @@ class ReminderListFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.moveButton.setOnClickListener {
-            val action = ReminderListFragmentDirections.actionReminderListFragmentToReminderDetailFragment()
-            this.findNavController().navigate(action)
-        }
     }
 
 }
