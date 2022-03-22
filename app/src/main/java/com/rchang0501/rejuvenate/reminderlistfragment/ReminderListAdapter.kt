@@ -22,7 +22,7 @@ class ReminderListAdapter(private val onReminderClicked: (Reminder) -> Unit): Li
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReminderListAdapter.ReminderViewHolder {
         return ReminderViewHolder(
-            ReminderListItemBinding.inflate(LayoutInflater.from(parent.context))
+            ReminderListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
