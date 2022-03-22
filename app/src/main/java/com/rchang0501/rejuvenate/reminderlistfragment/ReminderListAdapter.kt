@@ -1,16 +1,17 @@
 package com.rchang0501.rejuvenate.reminderlistfragment
 
+import android.R
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rchang0501.rejuvenate.data.Reminder
-import com.rchang0501.rejuvenate.databinding.ReminderListReminderBinding
+import com.rchang0501.rejuvenate.databinding.ReminderListItemBinding
 
 class ReminderListAdapter(private val onReminderClicked: (Reminder) -> Unit): ListAdapter<Reminder, ReminderListAdapter.ReminderViewHolder>(DiffCallback) {
 
-    class ReminderViewHolder(private var binding: ReminderListReminderBinding): RecyclerView.ViewHolder(binding.root){
+    class ReminderViewHolder(private var binding: ReminderListItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind (reminder: Reminder){
             binding.apply{
                 reminderTitle.text = reminder.title
@@ -21,7 +22,7 @@ class ReminderListAdapter(private val onReminderClicked: (Reminder) -> Unit): Li
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReminderListAdapter.ReminderViewHolder {
         return ReminderViewHolder(
-            ReminderListReminderBinding.inflate(LayoutInflater.from(parent.context))
+            ReminderListItemBinding.inflate(LayoutInflater.from(parent.context))
         )
     }
 

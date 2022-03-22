@@ -4,11 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.rchang0501.rejuvenate.RejuvenateApplication
 import com.rchang0501.rejuvenate.databinding.ReminderListFragmentBinding
+import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModel
+import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModelFactory
 
-class ReminderListFragment: Fragment() {
+class ReminderListFragment : Fragment() {
+
+    private val viewModel: RejuvenateViewModel by activityViewModels {
+        RejuvenateViewModelFactory(
+            (activity?.application as RejuvenateApplication).database.reminderDao()
+        )
+    }
 
     private var _binding: ReminderListFragmentBinding? = null
     private val binding get() = _binding!!
@@ -24,6 +36,22 @@ class ReminderListFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val adapter = ReminderListAdapter {
+            //val action = ReminderListFragmentDirections.actionReminderListFragmentToReminderDetailFragment(it.id)
+            val action =
+                ReminderListFragmentDirections.actionReminderListFragmentToReminderDetailFragment()
+            this.findNavController().navigate(action)
+        }
+        binding.recyclerView.adapter = adapter
+
+        viewModel.allReminders.observe(this.viewLifecycleOwner) { items ->
+            items.let {
+                adapter.submitList(it)
+            }
+        }
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
     }
 
 }
