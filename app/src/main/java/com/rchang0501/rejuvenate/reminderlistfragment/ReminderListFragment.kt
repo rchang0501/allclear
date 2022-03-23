@@ -36,7 +36,7 @@ class ReminderListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ReminderListAdapter {
+        val adapter = ReminderListAdapter(viewModel) {
             val action =
                 ReminderListFragmentDirections.actionReminderListFragmentToReminderDetailFragment(it.id)
             this.findNavController().navigate(action)

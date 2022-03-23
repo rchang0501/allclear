@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rchang0501.rejuvenate.data.Reminder
 import com.rchang0501.rejuvenate.databinding.ReminderListItemBinding
+import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModel
 
-class ReminderListAdapter(private val onReminderClicked: (Reminder) -> Unit): ListAdapter<Reminder, ReminderListAdapter.ReminderViewHolder>(DiffCallback) {
+class ReminderListAdapter(val viewModel: RejuvenateViewModel, private val onReminderClicked: (Reminder) -> Unit): ListAdapter<Reminder, ReminderListAdapter.ReminderViewHolder>(DiffCallback) {
 
-    class ReminderViewHolder(private var binding: ReminderListItemBinding): RecyclerView.ViewHolder(binding.root){
+    class ReminderViewHolder(var binding: ReminderListItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind (reminder: Reminder){
             binding.apply{
                 reminderTitle.text = reminder.title
@@ -32,6 +33,8 @@ class ReminderListAdapter(private val onReminderClicked: (Reminder) -> Unit): Li
         holder.itemView.setOnClickListener{
             onReminderClicked(current)
         }
+
+        holder.binding.completedButton.setOnClickListener { viewModel.changeCompleted(current) }
 
         holder.bind(current)
     }

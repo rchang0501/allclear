@@ -46,11 +46,11 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao): ViewModel() {
 
     fun changeCompleted(reminder: Reminder) {
         if (reminder.isComplete == false) {
-            reminder.isComplete = true
-            updateReminder(reminder)
+            val newReminder = reminder.copy(isComplete = true)
+            updateReminder(newReminder)
         } else if (reminder.isComplete == true) {
-            reminder.isComplete = false
-            updateReminder(reminder)
+            val newReminder = reminder.copy(isComplete = false)
+            updateReminder(newReminder)
         }
     }
 
