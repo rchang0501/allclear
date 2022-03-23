@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        app:cardCornerRadius="12dp"
+        app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,73 +23,109 @@
 
             <TextView
                 android:id="@+id/reminderTitle"
+                style="@style/CardSFProTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/card_view_padding"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin_between_elements"
+                android:layout_marginEnd="@dimen/margin"
                 android:text="{Title Here}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/calendarIcon"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/reminderDateGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/card_view_padding"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reminderTitle"
-                app:srcCompat="@drawable/ic_calendar"
-                app:tint="@color/primaryDarkColor" />
+                app:layout_constraintTop_toBottomOf="@+id/reminderTitle">
 
-            <TextView
-                android:id="@+id/reminderDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/card_view_padding"
-                android:text="{Reminder Date Here}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintStart_toEndOf="@+id/calendarIcon"
-                app:layout_constraintTop_toBottomOf="@+id/reminderTitle" />
+                <ImageView
+                    android:id="@+id/calendarIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_calendar"
+                    style="@style/CardIcon" />
 
-            <ImageView
-                android:id="@+id/timeIcon"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/reminderDate"
+                    style="@style/CardSFProInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="{Reminder Date Here}"
+                    android:translationX="@dimen/space_between_icon"
+                    app:layout_constraintBottom_toBottomOf="@+id/calendarIcon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/reminderTimeGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/card_view_padding"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calendarIcon"
-                app:srcCompat="@drawable/ic_time"
-                app:tint="@color/primaryDarkColor" />
+                app:layout_constraintTop_toBottomOf="@+id/reminderDateGroup">
 
-            <TextView
-                android:id="@+id/reminderTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/card_view_padding"
-                android:text="{Reminder Time Here}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintStart_toEndOf="@+id/timeIcon"
-                app:layout_constraintTop_toBottomOf="@+id/reminderDate" />
+                <ImageView
+                    android:id="@+id/timeIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_time"
+                    style="@style/CardIcon" />
 
-            <ImageView
-                android:id="@+id/notesIcon"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/reminderTime"
+                    style="@style/CardSFProInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="{Reminder Time Here}"
+                    android:translationX="@dimen/space_between_icon"
+                    app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
+                    app:layout_constraintStart_toEndOf="@+id/timeIcon"
+                    app:layout_constraintTop_toTopOf="@+id/timeIcon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/reminderNotesGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/card_view_padding"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:paddingBottom="@dimen/margin_between_elements"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reminderTime"
-                app:srcCompat="@drawable/ic_note"
-                app:tint="@color/primaryDarkColor" />
+                app:layout_constraintTop_toBottomOf="@+id/reminderTimeGroup">
 
-            <TextView
-                android:id="@+id/reminderNotes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/card_view_padding"
-                android:text="{Reminder Notes Here}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintStart_toEndOf="@+id/notesIcon"
-                app:layout_constraintTop_toBottomOf="@+id/reminderTime" />
+                <ImageView
+                    android:id="@+id/notesIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    style="@style/CardIcon"
+                    app:srcCompat="@drawable/ic_note" />
+
+                <TextView
+                    android:id="@+id/reminderNotes"
+                    style="@style/CardSFProInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="{Reminder Notes Here}"
+                    android:translationX="@dimen/space_between_icon"
+                    app:layout_constraintBottom_toBottomOf="@+id/notesIcon"
+                    app:layout_constraintStart_toEndOf="@+id/notesIcon"
+                    app:layout_constraintTop_toTopOf="@id/notesIcon" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

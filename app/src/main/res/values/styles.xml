@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+    <style name="ListSFProTitle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
+    </style>
+    <style name="ListSFProDate">
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
+    </style>
+
+    <style name="CardSFProTitle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="CardSFProInfo">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
+    </style>
+    <style name="CardIcon">
+        <item name="tint">@color/stockBlue</item>
+    </style>
 </resources>

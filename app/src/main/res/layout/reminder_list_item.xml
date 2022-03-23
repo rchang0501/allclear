@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    android:padding="5dp">
 
     <ImageButton
         android:id="@+id/completedButton"
@@ -38,16 +38,18 @@
 
         <TextView
             android:id="@+id/reminderTitle"
+            style="@style/ListSFProTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="{REMINDER TITLE}"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="-3dp"
+            android:text="{REMINDER TITLE}" />
 
         <TextView
             android:id="@+id/reminderDueDate"
+            style="@style/ListSFProDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-5dp"
             android:text="{date here}" />
 
     </LinearLayout>
