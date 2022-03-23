@@ -1,5 +1,6 @@
 package com.rchang0501.rejuvenate.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.rchang0501.rejuvenate.data.Reminder
 import com.rchang0501.rejuvenate.data.ReminderDao
@@ -45,6 +46,8 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao): ViewModel() {
     // --------------------------------
 
     fun changeCompleted(reminder: Reminder) {
+        Log.d("Rejuvenate View Model", "changeCompleted function called")
+
         if (reminder.isComplete == false) {
             val newReminder = reminder.copy(isComplete = true)
             updateReminder(newReminder)

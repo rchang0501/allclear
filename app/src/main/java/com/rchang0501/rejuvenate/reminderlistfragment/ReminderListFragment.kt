@@ -15,7 +15,7 @@ import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModelFactory
 
 class ReminderListFragment : Fragment() {
 
-    private val viewModel: RejuvenateViewModel by activityViewModels {
+    val viewModel: RejuvenateViewModel by activityViewModels {
         RejuvenateViewModelFactory(
             (activity?.application as RejuvenateApplication).database.reminderDao()
         )
