@@ -16,5 +16,5 @@ data class Reminder (
     @ColumnInfo(name = "notes")
     val notes: String? = null,
     @ColumnInfo(name = "isComplete")
-    val isComplete: Boolean = false
+    var isComplete: Boolean = false
 )

@@ -1,6 +1,6 @@
 package com.rchang0501.rejuvenate.reminderlistfragment
 
-import android.R
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -16,6 +16,7 @@ class ReminderListAdapter(private val onReminderClicked: (Reminder) -> Unit): Li
             binding.apply{
                 reminderTitle.text = reminder.title
                 reminderDueDate.text = reminder.dueDate
+                completedButton.setOnClickListener { Log.d("apdater", "${reminder.title} completed: ${reminder.isComplete}") }
             }
         }
     }
@@ -31,6 +32,7 @@ class ReminderListAdapter(private val onReminderClicked: (Reminder) -> Unit): Li
         holder.itemView.setOnClickListener{
             onReminderClicked(current)
         }
+
         holder.bind(current)
     }
 

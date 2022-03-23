@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -38,20 +37,18 @@ class ReminderListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = ReminderListAdapter {
-            //val action = ReminderListFragmentDirections.actionReminderListFragmentToReminderDetailFragment(it.id)
             val action =
-                ReminderListFragmentDirections.actionReminderListFragmentToReminderDetailFragment()
+                ReminderListFragmentDirections.actionReminderListFragmentToReminderDetailFragment(it.id)
             this.findNavController().navigate(action)
         }
         binding.recyclerView.adapter = adapter
 
-        viewModel.allReminders.observe(this.viewLifecycleOwner) { items ->
-            items.let {
+        viewModel.allReminders.observe(this.viewLifecycleOwner) { reminders ->
+            reminders.let {
                 adapter.submitList(it)
             }
         }
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
     }
-
 }
