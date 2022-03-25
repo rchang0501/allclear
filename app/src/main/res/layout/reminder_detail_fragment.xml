@@ -8,6 +8,38 @@
     android:background="@color/secondaryColor"
     tools:context=".reminderdetailfragment.ReminderDetailFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="back"
+        app:navigationIcon="@drawable/ic_navigate_back">
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/ToolbarTitile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/reminder" />
+
+        <Button
+            android:id="@+id/toolbarEditButton"
+            style="@style/ToolbarEditButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Edit"
+            android:textAllCaps="false"
+            android:textAlignment="viewEnd"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +47,7 @@
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -38,19 +70,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin"
-                android:layout_marginEnd="@dimen/margin"
                 android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reminderTitle">
 
                 <ImageView
                     android:id="@+id/calendarIcon"
+                    style="@style/CardIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/ic_calendar"
-                    style="@style/CardIcon" />
+                    app:srcCompat="@drawable/ic_calendar" />
 
                 <TextView
                     android:id="@+id/reminderDate"
@@ -68,19 +100,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin"
-                android:layout_marginEnd="@dimen/margin"
                 android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reminderDateGroup">
 
                 <ImageView
                     android:id="@+id/timeIcon"
+                    style="@style/CardIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/ic_time"
-                    style="@style/CardIcon" />
+                    app:srcCompat="@drawable/ic_time" />
 
                 <TextView
                     android:id="@+id/reminderTime"
@@ -100,19 +132,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin"
-                android:layout_marginEnd="@dimen/margin"
                 android:layout_marginTop="@dimen/margin"
-                android:paddingBottom="@dimen/margin_between_elements"
+                android:layout_marginEnd="@dimen/margin"
                 android:orientation="horizontal"
+                android:paddingBottom="@dimen/margin_between_elements"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reminderTimeGroup">
 
                 <ImageView
                     android:id="@+id/notesIcon"
+                    style="@style/CardIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    style="@style/CardIcon"
                     app:srcCompat="@drawable/ic_note" />
 
                 <TextView
