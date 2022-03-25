@@ -7,7 +7,6 @@
     <fragment
         android:id="@+id/reminderListFragment"
         android:name="com.rchang0501.rejuvenate.reminderlistfragment.ReminderListFragment"
-        android:label="@string/app_name"
         tools:layout="@layout/reminder_list_fragment">
         <action
             android:id="@+id/action_reminderListFragment_to_reminderDetailFragment"
