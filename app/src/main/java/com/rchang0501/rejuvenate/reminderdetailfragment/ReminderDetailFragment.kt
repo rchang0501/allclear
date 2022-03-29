@@ -51,7 +51,12 @@ class ReminderDetailFragment: Fragment() {
         binding.toolbar.title = null
         binding.toolbar.setNavigationIcon(R.drawable.ic_navigate_back)
 
-        val id = navigationArgs.itemId
+        val id = navigationArgs.reminderId
+
+        binding.toolbarEditButton.setOnClickListener {
+            val action = ReminderDetailFragmentDirections.actionReminderDetailFragmentToReminderEditFragment(id)
+            this.findNavController().navigate(action)
+        }
 
         viewModel.retrieveReminder(id).observe(this.viewLifecycleOwner){ selectedReminder ->
             reminder = selectedReminder

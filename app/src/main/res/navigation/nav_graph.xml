@@ -19,10 +19,33 @@
     <fragment
         android:id="@+id/reminderDetailFragment"
         android:name="com.rchang0501.rejuvenate.reminderdetailfragment.ReminderDetailFragment"
-        android:label="@string/reminder"
         tools:layout="@layout/reminder_detail_fragment">
         <argument
-            android:name="item_id"
+            android:name="reminder_id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_reminderDetailFragment_to_reminderEditFragment"
+            app:destination="@id/reminderEditFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/reminderEditFragment"
+        android:name="com.rchang0501.rejuvenate.remindereditfragment.ReminderEditFragment"
+        tools:layout="@layout/reminder_edit_fragment">
+        <argument
+            android:name="reminder_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_reminderEditFragment_to_reminderDetailFragment"
+            app:destination="@id/reminderDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/reminderDetailFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
