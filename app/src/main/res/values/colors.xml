@@ -12,5 +12,6 @@
     <color name="darkGray">#5e5e5e</color>
     <color name="white">#FFFFFF</color>
     <color name="stockBlue">#1076eb</color>
+    <color name="highlightBlue">#D5E9FF</color>
     <color name="bkgLiliac">#f2f2f7</color>
 </resources>

@@ -4,4 +4,5 @@
     <dimen name="margin_between_elements">8dp</dimen>
     <dimen name="card_view_padding">8dp</dimen>
     <dimen name="space_between_icon">12dp</dimen>
+    <dimen name="edit_view_header_start_margin">32dp</dimen>
 </resources>

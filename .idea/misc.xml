@@ -10,6 +10,8 @@
         <entry key="app/src/main/res/drawable/ic_hollow_circle.xml" value="0.1395" />
         <entry key="app/src/main/res/drawable/ic_navigate_back.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/ic_navigate_back_hidden.xml" value="0.2955" />
+        <entry key="app/src/main/res/drawable/selector.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/text_cursor.xml" value="0.131" />
         <entry key="app/src/main/res/font/sf_mono.xml" value="0.1787037037037037" />
         <entry key="app/src/main/res/font/sf_pro.xml" value="0.1787037037037037" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.189209726443769" />
