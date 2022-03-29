@@ -14,8 +14,29 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_navigate_back">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/toolbarBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="start">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_navigate_back"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ToolbarEditButton"
+                android:text="Back"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/toolbarTitle"
@@ -28,6 +49,7 @@
         <Button
             android:id="@+id/toolbarEditButton"
             style="@style/ToolbarEditButton"
+            android:textAppearance="@style/ToolbarEditButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

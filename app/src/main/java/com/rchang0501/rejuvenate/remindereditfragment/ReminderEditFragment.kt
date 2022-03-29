@@ -7,12 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
-import com.rchang0501.rejuvenate.R
 import com.rchang0501.rejuvenate.databinding.ReminderEditFragmentBinding
 
-class ReminderEditFragment: Fragment() {
+class ReminderEditFragment : Fragment() {
 
     private val navigationArgs: ReminderEditFragmentArgs by navArgs()
 
@@ -31,17 +28,11 @@ class ReminderEditFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = findNavController()
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-
-        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
-        binding.toolbar.title = null
-        binding.toolbar.navigationIcon = null
-
         val id = navigationArgs.reminderId
 
         binding.toolbarCancelButton.setOnClickListener {
-            val action = ReminderEditFragmentDirections.actionReminderEditFragmentToReminderDetailFragment(id)
+            val action =
+                ReminderEditFragmentDirections.actionReminderEditFragmentToReminderDetailFragment(id)
             this.findNavController().navigate(action)
         }
     }

@@ -8,16 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
-import com.rchang0501.rejuvenate.R
 import com.rchang0501.rejuvenate.RejuvenateApplication
 import com.rchang0501.rejuvenate.data.Reminder
 import com.rchang0501.rejuvenate.databinding.ReminderDetailFragmentBinding
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModel
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModelFactory
 
-class ReminderDetailFragment: Fragment() {
+class ReminderDetailFragment : Fragment() {
 
     lateinit var reminder: Reminder
 
@@ -44,21 +41,21 @@ class ReminderDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = findNavController()
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-
-        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
-        binding.toolbar.title = null
-        binding.toolbar.setNavigationIcon(R.drawable.ic_navigate_back)
-
         val id = navigationArgs.reminderId
 
         binding.toolbarEditButton.setOnClickListener {
-            val action = ReminderDetailFragmentDirections.actionReminderDetailFragmentToReminderEditFragment(id)
+            val action =
+                ReminderDetailFragmentDirections.actionReminderDetailFragmentToReminderEditFragment(
+                    id
+                )
             this.findNavController().navigate(action)
         }
 
-        viewModel.retrieveReminder(id).observe(this.viewLifecycleOwner){ selectedReminder ->
+        binding.toolbarBackButton.setOnClickListener {
+            this.findNavController().navigateUp()
+        }
+
+        viewModel.retrieveReminder(id).observe(this.viewLifecycleOwner) { selectedReminder ->
             reminder = selectedReminder
             bind(reminder)
         }
