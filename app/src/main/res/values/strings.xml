@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Rejuvenate</string>
     <string name="reminder">Reminder</string>
+    <string name="add_reminder">Add Reminder</string>
 </resources>

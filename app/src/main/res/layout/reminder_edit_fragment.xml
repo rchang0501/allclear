@@ -98,8 +98,7 @@
                     android:layout_margin="@dimen/margin"
                     android:background="@color/white"
                     android:inputType="textAutoComplete|textCapWords"
-                    android:singleLine="true"
-                    android:text="Reminder Title *" />
+                    android:singleLine="true" />
 
             </androidx.cardview.widget.CardView>
 
@@ -215,8 +214,7 @@
                     android:background="@color/white"
                     android:gravity="top"
                     android:inputType="textAutoComplete|textMultiLine"
-                    android:singleLine="false"
-                    android:text="Reminder Notes *" />
+                    android:singleLine="false" />
 
             </androidx.cardview.widget.CardView>
 
