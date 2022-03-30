@@ -53,12 +53,14 @@
 
     <!-- Edit View Styles -->
 
-    <style name="CalenderViewCustom" parent="Theme.MaterialComponents.DayNight">
+    <style name="CalenderViewCustom" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorAccent">@color/highlightBlue</item>
         <item name="colorPrimary">@color/white</item>
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">@style/ToolbarTitle</item>
     </style>
 
     <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
@@ -86,10 +88,13 @@
         <item name="textAllCaps">true</item>
     </style>
 
-    <!-- Random -->
-    <style name="Divider">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:background">?android:attr/listDivider</item>
+    <!-- Time Picker Dialogue Styles -->
+    <style name="TimerPickerDialog" parent="Theme.Rejuvenate.Dialogue">
+        <item name="android:windowIsFloating">true</item>
+        <item name="colorPrimary">@color/stockBlue</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/stockBlue</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
     </style>
+
 </resources>

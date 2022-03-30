@@ -14,5 +14,23 @@
         <!-- Customize your theme here. -->
         <item name="android:textCursorDrawable">@drawable/text_cursor</item>
         <item name="colorAccent">@color/stockBlue</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
+    </style>
+
+    <style name="Theme.Rejuvenate.Dialogue" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryTextColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <!-- Customize your theme here. -->
+        <item name="android:textCursorDrawable">@drawable/text_cursor</item>
+        <item name="colorAccent">@color/stockBlue</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
     </style>
 </resources>
