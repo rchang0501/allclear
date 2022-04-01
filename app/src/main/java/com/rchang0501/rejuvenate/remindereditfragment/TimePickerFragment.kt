@@ -29,7 +29,14 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
         val minute = viewModel.getTempReminderDueDateMinute()
 
         // Create a new instance of TimePickerDialog and return it
-        return TimePickerDialog(activity, R.style.TimerPickerDialog, this, hour, minute, DateFormat.is24HourFormat(activity))
+        return TimePickerDialog(
+            activity,
+            R.style.TimerPickerDialog,
+            this,
+            hour,
+            minute,
+            DateFormat.is24HourFormat(activity)
+        )
     }
 
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {

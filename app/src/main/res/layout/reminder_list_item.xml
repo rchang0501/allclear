@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants"
     android:layout_marginStart="@dimen/margin"
     android:layout_marginEnd="@dimen/margin"
+    android:descendantFocusability="blocksDescendants"
     android:paddingStart="@dimen/recycler_view_padding"
-    android:paddingEnd="@dimen/recycler_view_padding"
-    android:paddingTop="@dimen/card_view_padding">
+    android:paddingTop="@dimen/card_view_padding"
+    android:paddingEnd="@dimen/recycler_view_padding">
 
     <ImageButton
         android:id="@+id/completedButton"

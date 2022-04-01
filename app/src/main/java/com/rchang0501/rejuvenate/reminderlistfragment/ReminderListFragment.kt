@@ -38,7 +38,8 @@ class ReminderListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.toolbarAddButton.setOnClickListener {
-            val action = ReminderListFragmentDirections.actionReminderListFragmentToReminderEditFragment()
+            val action =
+                ReminderListFragmentDirections.actionReminderListFragmentToReminderEditFragment()
             this.findNavController().navigate(action)
         }
 
