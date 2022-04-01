@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:elevation="3dp"
+        app:contentInsetStart="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

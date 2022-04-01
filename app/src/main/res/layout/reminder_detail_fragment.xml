@@ -14,30 +14,27 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:elevation="3dp"
+        app:contentInsetStart="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/toolbarBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_navigate_back" />
-
-            <TextView
-                style="@style/ToolbarEditButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Back" />
-
-        </LinearLayout>
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:paddingStart="5dp"
+            android:text="Back"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"
+            android:textAppearance="@style/ToolbarEditButton"
+            android:textColor="@color/stockBlue"
+            app:icon="@drawable/ic_navigate_back"
+            app:iconGravity="start"
+            app:iconPadding="-1dp"
+            app:iconTint="@color/stockBlue" />
 
         <TextView
             android:id="@+id/toolbarTitle"
