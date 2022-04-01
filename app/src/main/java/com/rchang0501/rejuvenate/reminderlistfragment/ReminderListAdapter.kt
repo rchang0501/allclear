@@ -23,7 +23,7 @@ class ReminderListAdapter(
         fun bind(reminder: Reminder) {
             binding.apply {
                 reminderTitle.text = reminder.title
-                reminderDueDate.text = reminder.dueDate
+                reminderDueDate.text = viewModel.reminderDueDateWithTimeText(reminder)
                 if (!reminder.isComplete) {
                     completedButton.setImageResource(R.drawable.ic_hollow_circle)
                 } else {

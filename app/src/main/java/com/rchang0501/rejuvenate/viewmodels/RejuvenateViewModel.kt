@@ -6,52 +6,94 @@ import com.rchang0501.rejuvenate.data.Reminder
 import com.rchang0501.rejuvenate.data.ReminderDao
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.math.abs
 
-class RejuvenateViewModel(private val reminderDao: ReminderDao): ViewModel() {
+class RejuvenateViewModel(private val reminderDao: ReminderDao) : ViewModel() {
 
     val allReminders: LiveData<List<Reminder>> = reminderDao.getReminders().asLiveData()
 
-    fun isEntryValid(reminderTitle: String, reminderDueDate: String): Boolean {
-        if (reminderTitle.isBlank() || reminderDueDate.isBlank()) {
+    private val _tempReminderDueDate = MutableLiveData<Calendar>()
+    //val tempReminderDueDate: LiveData<Calendar> = _tempReminderDueDate
+
+    private val _tempReminderDueDateTime: MutableLiveData<Long> = MutableLiveData<Long>()
+    val tempReminderDueDateTime: LiveData<Long> = _tempReminderDueDateTime
+
+    private fun updateTempReminderDueDateTime() {
+        _tempReminderDueDateTime.value = _tempReminderDueDate.value!!.timeInMillis
+    }
+
+    fun setTempReminderDueDate(newDate: Calendar){
+        _tempReminderDueDate.value = newDate
+        updateTempReminderDueDateTime()
+    }
+
+    fun setTempReminderDueDateMonth(month: Int) {
+        _tempReminderDueDate.value?.set(Calendar.MONTH, month)
+        updateTempReminderDueDateTime()
+    }
+
+    fun setTempReminderDueDateDay(day: Int) {
+        _tempReminderDueDate.value?.set(Calendar.DAY_OF_MONTH, day)
+        updateTempReminderDueDateTime()
+    }
+
+    fun setTempReminderDueDateHour(hourOfDay: Int) {
+        _tempReminderDueDate.value?.set(Calendar.HOUR_OF_DAY, hourOfDay)
+        updateTempReminderDueDateTime()
+    }
+
+    fun setTempReminderDueDateMinute(minute: Int) {
+        _tempReminderDueDate.value?.set(Calendar.MINUTE, minute)
+        updateTempReminderDueDateTime()
+    }
+
+    fun getTempReminderDueDate(): Calendar {
+        return _tempReminderDueDate.value!!
+    }
+
+    fun getTempReminderDueDateHour(): Int {
+        return _tempReminderDueDate.value!!.get(Calendar.HOUR_OF_DAY)
+    }
+
+    fun getTempReminderDueDateMinute(): Int {
+        return _tempReminderDueDate.value!!.get(Calendar.MINUTE)
+    }
+
+    fun isEntryValid(reminderTitle: String): Boolean {
+        if (reminderTitle.isBlank()) {
             return false
         }
         return true
     }
 
-    fun addNewItem(reminderTitle: String, reminderDueDate: String, reminderNotes: String){
-        val newReminder = getNewReminderEntry(reminderTitle, reminderDueDate, reminderNotes) // converts the item to correct value types
+    fun addNewReminder(reminderTitle: String, reminderDueDate: Calendar, reminderNotes: String) {
+        val newReminder = getNewReminderEntry(
+            reminderTitle,
+            reminderDueDate,
+            reminderNotes
+        ) // converts the item to correct value types
         insertReminder(newReminder) // adds the new item to the database
     }
 
-    fun retrieveReminder(id: Int): LiveData<Reminder>{
+    fun retrieveReminder(id: Int): LiveData<Reminder> {
         return reminderDao.getReminder(id).asLiveData()
     }
 
-    fun deleteReminder(reminder: Reminder){
+    fun deleteReminder(reminder: Reminder) {
         viewModelScope.launch {
             reminderDao.delete(reminder)
         }
     }
 
-    // --- VARIOUS UPDATES TO THE DATA
-
-    /*
-    fun sellItem(item: Item){
-        if (item.quantityInStock > 0){
-            val newItem = item.copy(quantityInStock = item.quantityInStock - 1)
-            updateItem(newItem)
-        }
-    }*/
-
-    // --------------------------------
-
     fun changeCompleted(reminder: Reminder) {
         Log.d("Rejuvenate View Model", "changeCompleted function called")
 
-        if (reminder.isComplete == false) {
+        if (!reminder.isComplete) {
             val newReminder = reminder.copy(isComplete = true)
             updateReminder(newReminder)
-        } else if (reminder.isComplete == true) {
+        } else if (reminder.isComplete) {
             val newReminder = reminder.copy(isComplete = false)
             updateReminder(newReminder)
         }
@@ -60,21 +102,27 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao): ViewModel() {
     fun updateReminder(
         reminderId: Int,
         reminderTitle: String,
-        reminderDueDate: String,
+        reminderDueDate: Calendar,
         reminderNotes: String,
         reminderIsComplete: Boolean
-    ){
-        val updatedReminder = getUpdatedReminderEntry(reminderId, reminderTitle, reminderDueDate, reminderNotes, reminderIsComplete)
+    ) {
+        val updatedReminder = getUpdatedReminderEntry(
+            reminderId,
+            reminderTitle,
+            reminderDueDate,
+            reminderNotes,
+            reminderIsComplete
+        )
         updateReminder(updatedReminder)
     }
 
     private fun getUpdatedReminderEntry(
         reminderId: Int,
         reminderTitle: String,
-        reminderDueDate: String,
+        reminderDueDate: Calendar,
         reminderNotes: String,
         reminderIsComplete: Boolean
-    ) : Reminder {
+    ): Reminder {
         return Reminder(
             id = reminderId,
             title = reminderTitle,
@@ -84,13 +132,17 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao): ViewModel() {
         )
     }
 
-    private fun updateReminder(reminder: Reminder){
+    private fun updateReminder(reminder: Reminder) {
         viewModelScope.launch {
             reminderDao.update(reminder)
         }
     }
 
-    private fun getNewReminderEntry(reminderTitle: String, reminderDueDate: String, reminderNotes: String?): Reminder {
+    private fun getNewReminderEntry(
+        reminderTitle: String,
+        reminderDueDate: Calendar,
+        reminderNotes: String?
+    ): Reminder {
         return Reminder(
             title = reminderTitle,
             dueDate = reminderDueDate,
@@ -102,6 +154,35 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao): ViewModel() {
         viewModelScope.launch {
             reminderDao.insert(reminder)
         }
+    }
+
+    fun reminderDueDateText(reminder: Reminder): String {
+        val dateFormatter = SimpleDateFormat("MMM d", Locale.getDefault())
+
+        if (dueToday(reminder.dueDate)) {
+            return "Today"
+        } else {
+            return dateFormatter.format(reminder.dueDate.time)
+        }
+    }
+
+    private fun dueToday(selectedDate: Calendar): Boolean {
+        val today = Calendar.getInstance()
+        return today.get(Calendar.DAY_OF_MONTH) == selectedDate.get(Calendar.DAY_OF_MONTH)
+    }
+
+    fun reminderDueDateTimeText(reminder: Reminder): String {
+        val timeFormatter = SimpleDateFormat("h:mm a")
+        return timeFormatter.format(reminder.dueDate.time)
+    }
+
+    fun reminderDueDateWithTimeText(reminder: Reminder): String {
+        return reminderDueDateText(reminder) + " at " + reminderDueDateTimeText(reminder)
+    }
+
+    fun tempReminderDueDateTimeText(): String {
+        val timeFormatter = SimpleDateFormat("h:mm a")
+        return timeFormatter.format(_tempReminderDueDate.value!!.time)
     }
 }
 

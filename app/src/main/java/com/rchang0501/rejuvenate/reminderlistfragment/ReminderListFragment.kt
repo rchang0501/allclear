@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.rchang0501.rejuvenate.R
 import com.rchang0501.rejuvenate.RejuvenateApplication
 import com.rchang0501.rejuvenate.databinding.ReminderListFragmentBinding
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModel
@@ -35,6 +36,11 @@ class ReminderListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.toolbarAddButton.setOnClickListener {
+            val action = ReminderListFragmentDirections.actionReminderListFragmentToReminderEditFragment()
+            this.findNavController().navigate(action)
+        }
 
         val adapter = ReminderListAdapter(viewModel) {
             val action =
