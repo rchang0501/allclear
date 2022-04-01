@@ -16,6 +16,7 @@
         <item name="android:textCursorDrawable">@drawable/text_cursor</item>
         <item name="colorAccent">@color/stockBlue</item>
         <item name="android:fontFamily">@font/sf_pro</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <style name="Theme.Rejuvenate.Dialogue" parent="Theme.MaterialComponents.DayNight.Dialog">

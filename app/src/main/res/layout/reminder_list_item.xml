@@ -8,19 +8,16 @@
     android:layout_marginStart="@dimen/margin"
     android:layout_marginEnd="@dimen/margin"
     android:descendantFocusability="blocksDescendants"
-    android:paddingStart="@dimen/recycler_view_padding"
     android:paddingTop="@dimen/card_view_padding"
     android:paddingEnd="@dimen/recycler_view_padding">
 
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/completedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/ic_hollow_circle"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/reminderInfo"
@@ -28,7 +25,25 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/darkGray" />
+        app:tint="@color/darkGray" /> -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/completedButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:padding="@dimen/margin"
+        app:icon="@drawable/ic_hollow_circle"
+        app:iconTint="@color/darkGray"
+        app:layout_constrainedWidth="true"
+        android:paddingStart="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reminderInfo"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/reminderInfo"

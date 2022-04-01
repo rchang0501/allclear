@@ -25,9 +25,9 @@ class ReminderListAdapter(
                 reminderTitle.text = reminder.title
                 reminderDueDate.text = viewModel.reminderDueDateWithTimeText(reminder)
                 if (!reminder.isComplete) {
-                    completedButton.setImageResource(R.drawable.ic_hollow_circle)
+                    completedButton.setIconResource(R.drawable.ic_hollow_circle)
                 } else {
-                    completedButton.setImageResource(R.drawable.ic_circle)
+                    completedButton.setIconResource(R.drawable.ic_circle)
                 }
                 completedButton.setOnClickListener {
                     viewModel.changeCompleted(reminder)
