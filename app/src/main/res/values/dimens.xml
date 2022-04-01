@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin">16dp</dimen>
+    <dimen name="doubleMargin">32dp</dimen>
     <dimen name="margin_between_elements">8dp</dimen>
+    <dimen name="recycler_view_padding">5dp</dimen>
     <dimen name="card_view_padding">8dp</dimen>
     <dimen name="space_between_icon">12dp</dimen>
     <dimen name="edit_view_header_start_margin">32dp</dimen>

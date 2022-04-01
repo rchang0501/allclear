@@ -6,7 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
-    android:padding="5dp">
+    android:layout_marginStart="@dimen/margin"
+    android:layout_marginEnd="@dimen/margin"
+    android:paddingStart="@dimen/recycler_view_padding"
+    android:paddingEnd="@dimen/recycler_view_padding"
+    android:paddingTop="@dimen/card_view_padding">
 
     <ImageButton
         android:id="@+id/completedButton"
