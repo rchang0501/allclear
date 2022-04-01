@@ -2,7 +2,6 @@ package com.rchang0501.rejuvenate.remindereditfragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,15 +61,10 @@ class ReminderEditFragment : Fragment() {
         }
 
         viewModel.tempReminderDueDateTime.observe(this.viewLifecycleOwner) {
-            //Log.d("hi", "tempReminderDueDate change detected")
-            Log.d("hi", "${viewModel.tempReminderDueDateTimeText()}")
-
             binding.apply {
                 editReminderTimeButton.text = viewModel.tempReminderDueDateTimeText()
             }
         }
-
-
 
         if (id > 0) {
             binding.toolbarCancelButton.setOnClickListener {
