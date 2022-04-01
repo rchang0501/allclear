@@ -17,14 +17,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/toolbarAddButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            app:icon="@drawable/ic_add"
+            app:iconTint="@color/stockBlue"
+            app:iconGravity="end"
             android:background="@android:color/transparent"
             android:backgroundTint="@android:color/transparent"
-            android:text="Add"
             android:textAlignment="viewEnd"
             android:textAllCaps="false"
             android:textAppearance="@style/ToolbarEditButton"
