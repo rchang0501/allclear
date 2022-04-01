@@ -98,7 +98,8 @@
                     android:layout_margin="@dimen/margin"
                     android:background="@color/white"
                     android:inputType="textAutoComplete|textCapWords"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    tools:text="Reminder Title *" />
 
             </androidx.cardview.widget.CardView>
 
@@ -174,8 +175,8 @@
                             android:layout_marginBottom="@dimen/margin_between_elements"
                             android:backgroundTint="@color/bkgLiliac"
                             android:elevation="0dp"
-                            android:text="8:24 PM"
-                            android:textAppearance="@style/ToolbarEditButton" />
+                            android:textAppearance="@style/ToolbarEditButton"
+                            tools:text="8:24 PM" />
                     </RelativeLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -214,7 +215,8 @@
                     android:background="@color/white"
                     android:gravity="top"
                     android:inputType="textAutoComplete|textMultiLine"
-                    android:singleLine="false" />
+                    android:singleLine="false"
+                    tools:text="Reminder Notes *" />
 
             </androidx.cardview.widget.CardView>
 
