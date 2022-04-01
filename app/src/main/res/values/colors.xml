@@ -14,4 +14,6 @@
     <color name="stockBlue">#1076eb</color>
     <color name="highlightBlue">#D5E9FF</color>
     <color name="bkgLiliac">#f2f2f7</color>
+
+    <color name="transparent">#000000</color>
 </resources>
