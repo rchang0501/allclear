@@ -8,7 +8,6 @@ import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.abs
 
 class RejuvenateViewModel(private val reminderDao: ReminderDao) : ViewModel() {
 
@@ -24,7 +23,7 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao) : ViewModel() {
         _tempReminderDueDateTime.value = _tempReminderDueDate.value!!.timeInMillis
     }
 
-    fun setTempReminderDueDate(newDate: Calendar){
+    fun setTempReminderDueDate(newDate: Calendar) {
         _tempReminderDueDate.value = newDate
         updateTempReminderDueDateTime()
     }
@@ -156,6 +155,11 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao) : ViewModel() {
         }
     }
 
+    private fun dueToday(selectedDate: Calendar): Boolean {
+        val today = Calendar.getInstance()
+        return today.get(Calendar.DAY_OF_MONTH) == selectedDate.get(Calendar.DAY_OF_MONTH)
+    }
+
     fun reminderDueDateText(reminder: Reminder): String {
         val dateFormatter = SimpleDateFormat("MMM d", Locale.getDefault())
 
@@ -166,11 +170,6 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao) : ViewModel() {
         }
     }
 
-    private fun dueToday(selectedDate: Calendar): Boolean {
-        val today = Calendar.getInstance()
-        return today.get(Calendar.DAY_OF_MONTH) == selectedDate.get(Calendar.DAY_OF_MONTH)
-    }
-
     fun reminderDueDateTimeText(reminder: Reminder): String {
         val timeFormatter = SimpleDateFormat("h:mm a")
         return timeFormatter.format(reminder.dueDate.time)
@@ -178,6 +177,11 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao) : ViewModel() {
 
     fun reminderDueDateWithTimeText(reminder: Reminder): String {
         return reminderDueDateText(reminder) + " at " + reminderDueDateTimeText(reminder)
+    }
+
+    fun reminderDueDateWithWeekdayText(reminder: Reminder): String {
+        val timeFormatter = SimpleDateFormat("EEEE, MMM d", Locale.getDefault())
+        return timeFormatter.format(reminder.dueDate.time)
     }
 
     fun tempReminderDueDateTimeText(): String {
