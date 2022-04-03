@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // this sets the view to edge-to-edge so the navbar and toolbar are hidden
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         val binding = ActivityMainBinding.inflate(layoutInflater)

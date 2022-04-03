@@ -48,22 +48,8 @@ class ReminderEditFragment : Fragment() {
 
         val id = navigationArgs.reminderId
 
-        val calendar = Calendar.getInstance()
-        viewModel.setTempReminderDueDate(calendar)
-
-        binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            calendar.set(year, month, dayOfMonth)
-            binding.calendarView.date = calendar.timeInMillis
-        }
-
         binding.editReminderTimeButton.setOnClickListener {
             showTimePickerDialog()
-        }
-
-        viewModel.tempReminderDueDateTime.observe(this.viewLifecycleOwner) {
-            binding.apply {
-                editReminderTimeButton.text = viewModel.tempReminderDueDateTimeText()
-            }
         }
 
         if (id > 0) {
@@ -92,6 +78,19 @@ class ReminderEditFragment : Fragment() {
             binding.toolbarDoneButton.setOnClickListener {
                 addNewReminder()
             }
+        }
+
+        viewModel.setTempReminderDueDate(Calendar.getInstance())
+        viewModel.tempReminderDueDateTime.observe(this.viewLifecycleOwner) {
+            binding.apply {
+                editReminderTimeButton.text = viewModel.tempReminderDueDateTimeText()
+            }
+        }
+
+        binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            viewModel.setTempReminderDueDateYear(year)
+            viewModel.setTempReminderDueDateMonth(month)
+            viewModel.setTempReminderDueDateDay(dayOfMonth)
         }
     }
 
@@ -125,12 +124,6 @@ class ReminderEditFragment : Fragment() {
     }
 
     private fun updateReminder() {
-        val newDate = Calendar.getInstance()
-        newDate.timeInMillis = binding.calendarView.date
-
-        viewModel.setTempReminderDueDateMonth(newDate.get(Calendar.MONTH))
-        viewModel.setTempReminderDueDateDay(newDate.get(Calendar.DAY_OF_MONTH))
-
         if (isEntryValid()) {
             viewModel.updateReminder(
                 this.navigationArgs.reminderId,
@@ -144,12 +137,6 @@ class ReminderEditFragment : Fragment() {
     }
 
     private fun addNewReminder() {
-        val newDate = Calendar.getInstance()
-        newDate.timeInMillis = binding.calendarView.date
-
-        viewModel.setTempReminderDueDateMonth(newDate.get(Calendar.MONTH))
-        viewModel.setTempReminderDueDateDay(newDate.get(Calendar.DAY_OF_MONTH))
-
         if (isEntryValid()) {
             viewModel.addNewReminder(
                 binding.reminderTitle.text.toString(),

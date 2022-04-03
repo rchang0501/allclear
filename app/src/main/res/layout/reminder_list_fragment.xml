@@ -22,16 +22,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            app:icon="@drawable/ic_add"
-            app:iconTint="@color/stockBlue"
-            app:iconGravity="end"
             android:background="@android:color/transparent"
             android:backgroundTint="@android:color/transparent"
             android:textAlignment="viewEnd"
             android:textAllCaps="false"
             android:textAppearance="@style/ToolbarEditButton"
             android:textColor="@color/stockBlue"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="end"
+            app:iconTint="@color/stockBlue" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
