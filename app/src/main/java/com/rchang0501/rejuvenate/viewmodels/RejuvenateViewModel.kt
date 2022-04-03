@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.rchang0501.rejuvenate.data.Reminder
 import com.rchang0501.rejuvenate.data.ReminderDao
+import com.rchang0501.rejuvenate.reminderlistfragment.ReminderFilterMode
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
@@ -12,11 +13,22 @@ import java.util.*
 class RejuvenateViewModel(private val reminderDao: ReminderDao) : ViewModel() {
     val allReminders: LiveData<List<Reminder>> = reminderDao.getReminders().asLiveData()
 
+    private val _reminderFilterMode = MutableLiveData<ReminderFilterMode>(ReminderFilterMode.TODAY)
+    val reminderFilterMode = _reminderFilterMode
+
     private val _tempReminderDueDate = MutableLiveData<Calendar>(Calendar.getInstance())
     //val tempReminderDueDate: LiveData<Calendar> = _tempReminderDueDate
 
     private val _tempReminderDueDateTime: MutableLiveData<Long> = MutableLiveData<Long>()
     val tempReminderDueDateTime: LiveData<Long> = _tempReminderDueDateTime
+
+    fun setReminderFilterMode(filterMode: ReminderFilterMode) {
+        _reminderFilterMode.value = filterMode
+    }
+
+    fun getReminderFilterModePosition(): Int {
+        return _reminderFilterMode.value?.position ?: 0
+    }
 
     private fun updateTempReminderDueDateTime() {
         _tempReminderDueDateTime.value = _tempReminderDueDate.value!!.timeInMillis
@@ -159,9 +171,16 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao) : ViewModel() {
         }
     }
 
-    private fun dueToday(selectedDate: Calendar): Boolean {
+    fun dueToday(selectedDate: Calendar): Boolean {
         val today = Calendar.getInstance()
-        return today.get(Calendar.DAY_OF_MONTH) == selectedDate.get(Calendar.DAY_OF_MONTH)
+        return (today.get(Calendar.DAY_OF_MONTH) == selectedDate.get(Calendar.DAY_OF_MONTH) &&
+                today.get(Calendar.MONTH) == selectedDate.get(Calendar.MONTH) &&
+                today.get(Calendar.YEAR) == selectedDate.get(Calendar.YEAR))
+    }
+
+    fun dueFuture(selectedDate: Calendar): Boolean {
+        val today = Calendar.getInstance()
+        return selectedDate.timeInMillis > today.timeInMillis && !dueToday(selectedDate)
     }
 
     fun reminderDueDateText(reminder: Reminder): String {

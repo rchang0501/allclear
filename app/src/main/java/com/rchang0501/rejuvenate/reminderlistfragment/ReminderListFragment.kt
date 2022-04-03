@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.rchang0501.rejuvenate.RejuvenateApplication
+import com.rchang0501.rejuvenate.data.Reminder
 import com.rchang0501.rejuvenate.databinding.ReminderListFragmentBinding
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModel
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModelFactory
@@ -22,6 +23,9 @@ class ReminderListFragment : Fragment() {
             (activity?.application as RejuvenateApplication).database.reminderDao()
         )
     }
+
+    private var filteredList: List<Reminder>? = null
+    private var currentList: List<Reminder>? = null
 
     private var _binding: ReminderListFragmentBinding? = null
     private val binding get() = _binding!!
@@ -38,10 +42,22 @@ class ReminderListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        currentList = viewModel.allReminders.value
+
         binding.toolbarAddButton.setOnClickListener {
             val action =
                 ReminderListFragmentDirections.actionReminderListFragmentToReminderEditFragment()
             this.findNavController().navigate(action)
+        }
+
+        binding.segmentedControlGroup.setOnSelectedOptionChangeCallback { selectedIndex ->
+            if (selectedIndex == 0) {
+                viewModel.setReminderFilterMode(ReminderFilterMode.TODAY)
+            } else if (selectedIndex == 1) {
+                viewModel.setReminderFilterMode(ReminderFilterMode.FUTURE)
+            } else {
+                viewModel.setReminderFilterMode(ReminderFilterMode.ALL)
+            }
         }
 
         val adapter = ReminderListAdapter(viewModel) {
@@ -52,9 +68,16 @@ class ReminderListFragment : Fragment() {
         binding.recyclerView.adapter = adapter
 
         viewModel.allReminders.observe(this.viewLifecycleOwner) { reminders ->
-            reminders.let {
-                adapter.submitList(it)
-            }
+            currentList = reminders
+            updateList(adapter)
+        }
+
+        viewModel.reminderFilterMode.observe(this.viewLifecycleOwner) {
+            binding.segmentedControlGroup.setSelectedIndex(
+                viewModel.getReminderFilterModePosition(),
+                false
+            )
+            updateList(adapter)
         }
 
         // Swipe handler to delete items from the list
@@ -80,5 +103,21 @@ class ReminderListFragment : Fragment() {
 
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+    }
+
+    private fun updateList(adapter: ReminderListAdapter) {
+        if (viewModel.reminderFilterMode.value == ReminderFilterMode.TODAY) {
+            filteredList = currentList?.filter {
+                viewModel.dueToday(it.dueDate)
+            }
+        } else if (viewModel.reminderFilterMode.value == ReminderFilterMode.FUTURE) {
+            filteredList = currentList?.filter {
+                viewModel.dueFuture(it.dueDate)
+            }
+        } else {
+            filteredList = currentList
+        }
+        adapter.submitList(filteredList)
+        binding.recyclerView.smoothScrollToPosition(0)
     }
 }
