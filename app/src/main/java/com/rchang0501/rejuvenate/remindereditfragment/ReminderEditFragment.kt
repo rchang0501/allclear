@@ -72,9 +72,9 @@ class ReminderEditFragment : Fragment() {
             }
         } else {
             binding.toolbarCancelButton.setOnClickListener {
-                val action =
-                    ReminderEditFragmentDirections.actionReminderEditFragmentToReminderListFragment()
-                this.findNavController().navigate(action)
+                //val action = ReminderEditFragmentDirections.actionReminderEditFragmentToReminderListFragment()
+                //this.findNavController().navigate(action)
+                this.findNavController().navigateUp()
             }
             binding.toolbarDoneButton.setOnClickListener {
                 addNewReminder()
