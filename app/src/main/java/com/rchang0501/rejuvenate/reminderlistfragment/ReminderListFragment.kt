@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.rchang0501.rejuvenate.R
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.rchang0501.rejuvenate.RejuvenateApplication
 import com.rchang0501.rejuvenate.databinding.ReminderListFragmentBinding
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModel
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModelFactory
+
 
 class ReminderListFragment : Fragment() {
 
@@ -56,6 +57,28 @@ class ReminderListFragment : Fragment() {
             }
         }
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
+        // Swipe handler to delete items from the list
+        val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
+            ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT
+            ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
+                //Remove swiped item from list and notify the RecyclerView
+                val position = viewHolder.adapterPosition
+                viewModel.deleteReminder(viewModel.allReminders.value!![position])
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
     }
 }

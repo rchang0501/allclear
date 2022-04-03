@@ -1,6 +1,5 @@
 package com.rchang0501.rejuvenate.reminderlistfragment
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -31,7 +30,6 @@ class ReminderListAdapter(
                 }
                 completedButton.setOnClickListener {
                     viewModel.changeCompleted(reminder)
-                    Log.d("apdater", "${reminder.title} completed: ${reminder.isComplete}")
                 }
             }
         }
