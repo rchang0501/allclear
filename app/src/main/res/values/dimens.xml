@@ -7,4 +7,7 @@
     <dimen name="card_view_padding">8dp</dimen>
     <dimen name="space_between_icon">12dp</dimen>
     <dimen name="edit_view_header_start_margin">32dp</dimen>
+
+    <dimen name="segmented_button_padding">-10dp</dimen>
+    <dimen name="segmented_button_text">5sp</dimen>
 </resources>

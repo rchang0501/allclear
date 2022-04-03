@@ -2,4 +2,7 @@
     <string name="app_name">Rejuvenate</string>
     <string name="reminder">Skincare Reminder</string>
     <string name="add_reminder">Add Skincare Reminder</string>
+    <string name="today">Today</string>
+    <string name="future">Future</string>
+    <string name="all">All</string>
 </resources>

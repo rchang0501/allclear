@@ -33,6 +33,13 @@
         <item name="android:fontFamily">@font/sf_pro</item>
     </style>
 
+    <style name="SegmentedButton">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <!-- Detail View Card Styles -->
     <style name="CardSFProTitle">
         <item name="android:textSize">18sp</item>

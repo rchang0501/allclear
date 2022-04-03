@@ -14,8 +14,45 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:elevation="3dp"
+        app:contentInsetStart="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <com.alanvan.segmented_control.SegmentedControlGroup
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <com.alanvan.segmented_control.SegmentedControlButton
+                android:id="@+id/toolbarTodaySegment"
+                style="@style/SegmentedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/segmented_button_padding"
+                android:paddingBottom="@dimen/segmented_button_padding"
+                android:text="@string/today" />
+
+            <com.alanvan.segmented_control.SegmentedControlButton
+                android:id="@+id/toolbarFutureSegment"
+                style="@style/SegmentedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/segmented_button_padding"
+                android:paddingBottom="@dimen/segmented_button_padding"
+                android:text="@string/future" />
+
+            <com.alanvan.segmented_control.SegmentedControlButton
+                android:id="@+id/toolbarAllSegment"
+                style="@style/SegmentedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/segmented_button_padding"
+                android:paddingBottom="@dimen/segmented_button_padding"
+                android:text="@string/all" />
+
+        </com.alanvan.segmented_control.SegmentedControlGroup>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/toolbarAddButton"
