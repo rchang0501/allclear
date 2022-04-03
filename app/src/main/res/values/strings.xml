@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Rejuvenate</string>
-    <string name="reminder">Reminder</string>
-    <string name="add_reminder">Add Reminder</string>
+    <string name="reminder">Skincare Reminder</string>
+    <string name="add_reminder">Add Skincare Reminder</string>
 </resources>

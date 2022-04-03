@@ -13,7 +13,7 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao) : ViewModel() {
     val allReminders: LiveData<List<Reminder>> = reminderDao.getReminders().asLiveData()
 
     private val _tempReminderDueDate = MutableLiveData<Calendar>(Calendar.getInstance())
-    val tempReminderDueDate: LiveData<Calendar> = _tempReminderDueDate
+    //val tempReminderDueDate: LiveData<Calendar> = _tempReminderDueDate
 
     private val _tempReminderDueDateTime: MutableLiveData<Long> = MutableLiveData<Long>()
     val tempReminderDueDateTime: LiveData<Long> = _tempReminderDueDateTime

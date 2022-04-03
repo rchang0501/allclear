@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.rchang0501.rejuvenate.R
 import com.rchang0501.rejuvenate.RejuvenateApplication
 import com.rchang0501.rejuvenate.data.Reminder
 import com.rchang0501.rejuvenate.databinding.ReminderEditFragmentBinding
@@ -78,6 +79,7 @@ class ReminderEditFragment : Fragment() {
             binding.toolbarDoneButton.setOnClickListener {
                 addNewReminder()
             }
+            binding.toolbarTitle.text = getString(R.string.add_reminder)
         }
 
         viewModel.setTempReminderDueDate(Calendar.getInstance())
