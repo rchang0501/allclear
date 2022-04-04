@@ -59,6 +59,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.4.0-alpha03"
     kapt 'androidx.room:room-compiler:2.4.0-alpha03'
 
+    // Segmented control group library to switch between Reminder list filter modes
     implementation 'com.github.alanvan0502:segmented-control-group:v1.0'
 
     testImplementation 'junit:junit:4.13.2'

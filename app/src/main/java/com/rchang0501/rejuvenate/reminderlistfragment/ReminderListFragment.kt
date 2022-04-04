@@ -15,7 +15,6 @@ import com.rchang0501.rejuvenate.databinding.ReminderListFragmentBinding
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModel
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModelFactory
 
-
 class ReminderListFragment : Fragment() {
 
     val viewModel: RejuvenateViewModel by activityViewModels {
@@ -78,6 +77,7 @@ class ReminderListFragment : Fragment() {
                 false
             )
             updateList(adapter)
+            binding.recyclerView.smoothScrollToPosition(0)
         }
 
         // Swipe handler to delete items from the list
@@ -118,6 +118,5 @@ class ReminderListFragment : Fragment() {
             filteredList = currentList
         }
         adapter.submitList(filteredList)
-        binding.recyclerView.smoothScrollToPosition(0)
     }
 }
