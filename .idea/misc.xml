@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/circle_progress.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/ic_add_button.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/ic_arrow_right.xml" value="0.1725" />

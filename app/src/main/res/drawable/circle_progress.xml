@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:shape="oval"
+            android:useLevel="false">
+            <solid android:color="@color/bkgLiliac" />
+        </shape>
+    </item>
+    <item>
+        <clip
+            android:clipOrientation="vertical"
+            android:gravity="bottom">
+            <shape
+                android:shape="oval"
+                android:useLevel="true">
+                <solid android:color="@color/sajeGreen"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

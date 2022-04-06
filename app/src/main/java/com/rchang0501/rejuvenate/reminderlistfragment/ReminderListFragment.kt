@@ -43,6 +43,14 @@ class ReminderListFragment : Fragment() {
 
         currentList = viewModel.allReminders.value
 
+        binding.apply{
+            progressView.max = currentList?.size ?: 100
+            progressView.progress = currentList?.filter {
+                it.isComplete
+            }?.size ?: 0
+        }
+        //binding.progressView.max = filteredList?.size ?: 100
+
         binding.toolbarAddButton.setOnClickListener {
             val action =
                 ReminderListFragmentDirections.actionReminderListFragmentToReminderEditFragment()
@@ -69,14 +77,15 @@ class ReminderListFragment : Fragment() {
         viewModel.allReminders.observe(this.viewLifecycleOwner) { reminders ->
             currentList = reminders
             updateList(adapter)
+            updateProgressView()
         }
 
         viewModel.reminderFilterMode.observe(this.viewLifecycleOwner) {
+            updateList(adapter)
             binding.segmentedControlGroup.setSelectedIndex(
                 viewModel.getReminderFilterModePosition(),
                 false
             )
-            updateList(adapter)
             binding.recyclerView.smoothScrollToPosition(0)
         }
 
@@ -118,5 +127,12 @@ class ReminderListFragment : Fragment() {
             filteredList = currentList
         }
         adapter.submitList(filteredList)
+        binding.progressView.max = filteredList?.size ?: 100
+    }
+
+    private fun updateProgressView() {
+        binding.progressView.progress = filteredList?.filter {
+            it.isComplete
+        }?.size ?: 0
     }
 }
