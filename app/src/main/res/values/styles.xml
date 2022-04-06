@@ -62,7 +62,7 @@
 
     <style name="CalenderViewCustom" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorAccent">@color/secondaryAccent</item>
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/mainBackground</item>
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
         <item name="android:fontFamily">@font/sf_pro</item>
         <item name="android:textSize">18sp</item>
@@ -98,10 +98,11 @@
     <!-- Time Picker Dialogue Styles -->
     <style name="TimerPickerDialog" parent="Theme.Rejuvenate.Dialogue">
         <item name="android:windowIsFloating">true</item>
-        <item name="colorPrimary">@color/mainAccent</item>
+        <item name="android:textColorPrimary">@color/primaryTextColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/mainAccent</item>
         <item name="android:fontFamily">@font/sf_pro</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 
 </resources>

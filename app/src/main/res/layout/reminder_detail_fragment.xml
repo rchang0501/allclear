@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bkgLiliac"
+    android:background="@color/secondaryBackground"
     android:fitsSystemWindows="true"
     tools:context=".reminderdetailfragment.ReminderDetailFragment">
 
@@ -13,7 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/mainBackground"
         android:elevation="3dp"
         app:contentInsetStart="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +75,7 @@
             android:layout_margin="24dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="1dp"
+            android:backgroundTint="@color/cardBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 

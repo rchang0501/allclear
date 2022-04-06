@@ -9,13 +9,19 @@
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#000000</color>
 
-    <color name="darkGray">#5e5e5e</color>
-    <color name="white">#FFFFFF</color>
+    <color name="mainBackground">#FFFFFF</color>
+    <color name="secondaryBackground">#f2f2f7</color>
+    <color name="tertiaryBackground">#f2f2f7</color>
+
     <color name="mainAccent">#66A651</color>
     <color name="secondaryAccent">#C5EAB8</color>
-    <color name="bkgLiliac">#f2f2f7</color>
 
-    <color name="transparent">#000000</color>
+    <color name="doneButtonTint">#5e5e5e</color>
+    <color name="segmentedControlBackground">#F2F2F7</color>
+    <color name="segmentedControlSlider">#FFFFFF</color>
+    <color name="segmentedControlDivider">#C1C1C1</color>
 
-    <color name="sajeGreen">#C5EAB8</color>
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="timerPickerBackground">@android:color/transparent</color>
+
 </resources>

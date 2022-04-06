@@ -11,6 +11,32 @@
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <!-- Custom Color Changes -->
+
         <!-- Customize your theme here. -->
+        <item name="android:textCursorDrawable">@drawable/text_cursor</item>
+        <item name="colorAccent">@color/mainAccent</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.Rejuvenate.Dialogue" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/cardBackground</item>
+        <item name="colorPrimaryVariant">@color/cardBackground</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/cardBackground</item>
+        <item name="colorSecondaryVariant">@color/cardBackground</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/mainBackground</item>
+        <!-- Customize your theme here. -->
+        <item name="android:textCursorDrawable">@drawable/text_cursor</item>
+        <item name="colorAccent">@color/mainAccent</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
+        <item name="android:backgroundTint">@color/timerPickerBackground</item>
     </style>
 </resources>

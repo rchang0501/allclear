@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#ff000000</color>
+    <color name="primaryLightColor">#ffffff</color>
+    <color name="primaryDarkColor">#bdb9b7</color>
+    <color name="secondaryColor">#fafafa</color>
+    <color name="secondaryLightColor">#ffffff</color>
+    <color name="secondaryDarkColor">#c7c7c7</color>
+    <color name="primaryTextColor">#FFFFFF</color>
+    <color name="secondaryTextColor">#FFFFFF</color>
+
+    <color name="mainBackground">#ff000000</color>
+    <color name="secondaryBackground">#ff000000</color>
+    <color name="tertiaryBackground">#313131</color>
+
+    <color name="mainAccent">#C5EAB8</color>
+    <color name="secondaryAccent">#C5EAB8</color>
+
+    <color name="doneButtonTint">#6C6C6C</color>
+    <color name="segmentedControlBackground">#1D1D1D</color>
+    <color name="segmentedControlSlider">#6C6C6C</color>
+    <color name="segmentedControlDivider">#545456</color>
+
+    <color name="cardBackground">#1D1D1D</color>
+    <color name="timerPickerBackground">#1D1D1D</color>
+
+</resources>

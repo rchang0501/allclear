@@ -20,7 +20,7 @@
         android:padding="@dimen/margin"
         android:paddingStart="0dp"
         app:icon="@drawable/ic_hollow_circle"
-        app:iconTint="@color/darkGray"
+        app:iconTint="@color/doneButtonTint"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/reminderInfo"

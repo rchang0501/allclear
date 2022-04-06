@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/mainBackground</item>
         <!-- Customize your theme here. -->
         <item name="android:textCursorDrawable">@drawable/text_cursor</item>
         <item name="colorAccent">@color/mainAccent</item>
@@ -28,8 +28,6 @@
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <!-- Customize your theme here. -->
         <item name="android:textCursorDrawable">@drawable/text_cursor</item>
         <item name="colorAccent">@color/mainAccent</item>
