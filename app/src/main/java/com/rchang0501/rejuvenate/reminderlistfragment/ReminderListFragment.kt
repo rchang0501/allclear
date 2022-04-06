@@ -1,9 +1,12 @@
 package com.rchang0501.rejuvenate.reminderlistfragment
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -14,6 +17,7 @@ import com.rchang0501.rejuvenate.data.Reminder
 import com.rchang0501.rejuvenate.databinding.ReminderListFragmentBinding
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModel
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModelFactory
+import kotlin.math.roundToInt
 
 class ReminderListFragment : Fragment() {
 
@@ -25,6 +29,9 @@ class ReminderListFragment : Fragment() {
 
     private var filteredList: List<Reminder>? = null
     private var currentList: List<Reminder>? = null
+
+    private var progress: Int = 0
+    private var oldProgress: Int = 0
 
     private var _binding: ReminderListFragmentBinding? = null
     private val binding get() = _binding!!
@@ -38,18 +45,18 @@ class ReminderListFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         currentList = viewModel.allReminders.value
 
-        binding.apply{
+        binding.apply {
             progressView.max = currentList?.size ?: 100
             progressView.progress = currentList?.filter {
                 it.isComplete
             }?.size ?: 0
         }
-        //binding.progressView.max = filteredList?.size ?: 100
 
         binding.toolbarAddButton.setOnClickListener {
             val action =
@@ -77,18 +84,27 @@ class ReminderListFragment : Fragment() {
         viewModel.allReminders.observe(this.viewLifecycleOwner) { reminders ->
             currentList = reminders
             updateList(adapter)
-            updateProgressView()
+            updateProgressViewWithAnim()
         }
 
         viewModel.reminderFilterMode.observe(this.viewLifecycleOwner) {
+            oldProgress = binding.progressView.progress
+
             updateList(adapter)
             binding.segmentedControlGroup.setSelectedIndex(
                 viewModel.getReminderFilterModePosition(),
                 false
             )
-            binding.recyclerView.smoothScrollToPosition(0)
+            updateProgressViewWithoutAnim()
+            //updateProgressView()
+            //updateProgressViewWithAnim()
+            //binding.recyclerView.smoothScrollToPosition(0)
         }
 
+        swipeHandler()
+    }
+
+    private fun swipeHandler() {
         // Swipe handler to delete items from the list
         val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
             ItemTouchHelper.SimpleCallback(
@@ -106,7 +122,8 @@ class ReminderListFragment : Fragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
                 //Remove swiped item from list and notify the RecyclerView
                 val position = viewHolder.adapterPosition
-                viewModel.deleteReminder(viewModel.allReminders.value!![position])
+                val reminderToDelete = filteredList!![position]
+                viewModel.deleteReminder(reminderToDelete)
             }
         }
 
@@ -127,12 +144,54 @@ class ReminderListFragment : Fragment() {
             filteredList = currentList
         }
         adapter.submitList(filteredList)
-        binding.progressView.max = filteredList?.size ?: 100
     }
 
-    private fun updateProgressView() {
-        binding.progressView.progress = filteredList?.filter {
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun updateProgressViewWithAnim() {
+        binding.progressView.max = filteredList?.size ?: 100
+
+        progress = filteredList?.filter {
             it.isComplete
         }?.size ?: 0
+
+        binding.progressView.setProgress(progress, true)
+    }
+
+    private fun updateProgressViewWithoutAnim() {
+        binding.progressView.max = filteredList?.size ?: 100
+
+        progress = filteredList?.filter {
+            it.isComplete
+        }?.size ?: 0
+
+        binding.progressView.progress = progress
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun updateProgressView() {
+        var newMax = filteredList?.size ?: 100
+        var newProgress = filteredList?.filter {
+            it.isComplete
+        }?.size ?: 0
+
+        var newMaxFloat: Double = newMax.toDouble()
+        var newProgressFloat: Double = newProgress.toDouble()
+
+        var diffProgress = oldProgress * (newProgressFloat/newMaxFloat)
+        var diffProgressInt: Int = diffProgress.roundToInt()
+        binding.progressView.setProgress(diffProgressInt, true)
+
+        Log.d("thing oldProgress", "$oldProgress")
+        Log.d("thing newProgress", "$newProgress")
+        Log.d("thing newMax", "$newMax")
+        Log.d("thing diffProgress", "$diffProgress")
+        Log.d("thing diffProgressInt", "$diffProgressInt")
+        Log.d("thing space", "")
+
+        // after animation change
+        //binding.progressView.max = newMax
+        //progress = newProgress
+
+        //binding.progressView.progress = progress
     }
 }

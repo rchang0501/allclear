@@ -77,23 +77,25 @@
         android:layout_width="350dp"
         android:layout_height="350dp"
         android:layout_marginStart="@dimen/margin"
-        android:layout_marginEnd="@dimen/margin"
         android:layout_marginTop="@dimen/doubleMargin"
+        android:layout_marginEnd="@dimen/margin"
         android:layout_marginBottom="@dimen/doubleMargin"
+        android:animationResolution="100"
+        android:indeterminateDuration="@integer/progress_anim_time"
         android:indeterminateOnly="false"
         android:progressDrawable="@drawable/circle_progress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        tools:progress="90" />
+        tools:progress="30" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scrollbars="none"
         android:layout_marginTop="@dimen/doubleMargin"
+        android:scrollbars="none"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

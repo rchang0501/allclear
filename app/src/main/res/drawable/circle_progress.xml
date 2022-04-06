@@ -14,7 +14,7 @@
             <shape
                 android:shape="oval"
                 android:useLevel="true">
-                <solid android:color="@color/sajeGreen"/>
+                <solid android:color="@color/highlightBlue"/>
             </shape>
         </clip>
     </item>
