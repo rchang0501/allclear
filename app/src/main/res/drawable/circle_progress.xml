@@ -14,7 +14,7 @@
             <shape
                 android:shape="oval"
                 android:useLevel="true">
-                <solid android:color="@color/highlightBlue"/>
+                <solid android:color="@color/secondaryAccent"/>
             </shape>
         </clip>
     </item>

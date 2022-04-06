@@ -104,6 +104,14 @@ class ReminderListFragment : Fragment() {
         swipeHandler()
     }
 
+    /*
+    override fun onDestroyView() {
+        viewModel.allReminders.removeObservers(this.viewLifecycleOwner)
+        viewModel.allReminders.removeObservers(this.viewLifecycleOwner)
+
+        super.onDestroyView()
+    }*/
+
     private fun swipeHandler() {
         // Swipe handler to delete items from the list
         val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :

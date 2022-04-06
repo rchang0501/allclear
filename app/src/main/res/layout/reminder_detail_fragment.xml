@@ -31,11 +31,11 @@
             android:textAlignment="viewStart"
             android:textAllCaps="false"
             android:textAppearance="@style/ToolbarEditButton"
-            android:textColor="@color/stockBlue"
+            android:textColor="@color/mainAccent"
             app:icon="@drawable/ic_navigate_back"
             app:iconGravity="start"
             app:iconPadding="-1dp"
-            app:iconTint="@color/stockBlue" />
+            app:iconTint="@color/mainAccent" />
 
         <TextView
             android:id="@+id/toolbarTitle"
@@ -56,7 +56,7 @@
             android:textAlignment="viewEnd"
             android:textAllCaps="false"
             android:textAppearance="@style/ToolbarEditButton"
-            android:textColor="@color/stockBlue" />
+            android:textColor="@color/mainAccent" />
 
     </androidx.appcompat.widget.Toolbar>
 

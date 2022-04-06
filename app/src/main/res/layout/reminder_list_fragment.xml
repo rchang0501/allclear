@@ -65,11 +65,11 @@
             android:textAlignment="viewEnd"
             android:textAllCaps="false"
             android:textAppearance="@style/ToolbarEditButton"
-            android:textColor="@color/stockBlue"
+            android:textColor="@color/mainAccent"
             android:textStyle="bold"
             app:icon="@drawable/ic_add"
             app:iconGravity="end"
-            app:iconTint="@color/stockBlue" />
+            app:iconTint="@color/mainAccent" />
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
