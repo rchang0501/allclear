@@ -193,6 +193,14 @@ class RejuvenateViewModel(private val reminderDao: ReminderDao) : ViewModel() {
         }
     }
 
+    fun reminderDueDateTextForDetail(reminder: Reminder): String {
+        if (dueToday(reminder.dueDate)) {
+            return "Today"
+        } else {
+            return reminderDueDateWithWeekdayText(reminder)
+        }
+    }
+
     fun reminderDueDateTimeText(reminder: Reminder): String {
         val timeFormatter = SimpleDateFormat("h:mm a")
         return timeFormatter.format(reminder.dueDate.time)

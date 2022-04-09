@@ -64,7 +64,7 @@ class ReminderDetailFragment : Fragment() {
     private fun bind(reminder: Reminder) {
         binding.apply {
             reminderTitle.text = reminder.title
-            reminderDate.text = viewModel.reminderDueDateWithWeekdayText(reminder)
+            reminderDate.text = viewModel.reminderDueDateTextForDetail(reminder)
             reminderTime.text = viewModel.reminderDueDateTimeText(reminder)
             reminderNotes.text = reminder.notes
         }
