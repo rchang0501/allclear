@@ -1,6 +1,20 @@
 # Rejuvenate-Android
 Skincare management Android application using Jetpack for UI/UX development and Room for data handling. Employs modern Kotlin development principles and the MVVM architecture pattern.
 
+<p align="center">
+  <img src="/demo/rejuvenate_icon_circle-01.png" alt="drawing" width="150" height="150"/>
+</p>
+
+### About Rejuvenate
+Rejuvenate is a skincare management app that is **built natively for iOS and  Android.** The goal of the application is to enable the user to effectively manage their skincare routine; specifying the product to use, the date and time to use it, as well as adding additional notes such as usage instructions. A skincare and wellness angle was taken to build this routine management app due to a growing intersection between mobile technologies and the beauty/wellness industry. Strong marketing efforts from industry giants such as Sephora have begun driving a trend of having your phone be the primary hub for beauty/wellness browsing and purchasing. Rejuvenate will thus benefit a wide audience of users to ensure they are scheduling and managing their routines to best meet their skincare goals. 
+
+### Android Tech Stack
+**Language**: Kotlin </br>
+**Architecture Pattern**: MVVM </br>
+**Jetpack Libraries**: Room, Material Design Components*, DataBinding*, Compose*, Lifecycle, Navigation </br>
+
+## Demo
+
 ### Launch Screen
 
 ![Rejuvenate Launch](/demo/1_intro.gif)
