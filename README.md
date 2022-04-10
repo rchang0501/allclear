@@ -2,7 +2,7 @@
 Skincare management Android application using Jetpack for UI/UX development and Room for data handling. Employs modern Kotlin development principles and the MVVM architecture pattern.
 
 <p align="center">
-  <img src="/demo/rejuvenate_icon_circle-01.png" alt="drawing" width="150" height="150"/>
+  <img src="/demo/rejuvenate_icon_circle-01.png" alt="rejuvenate_icon" width="150" height="150"/>
 </p>
 
 ### About Rejuvenate
