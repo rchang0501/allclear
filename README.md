@@ -16,7 +16,7 @@ Rejuvenate is a skincare management app that is **built natively for iOS and  An
 
 ## Side-by-Side iOS and Android Demo
 
-### Launch Screen
+### Launch Screen and Home
 Startup time between platforms is closely matched. All views also contain a rubber band effect to enhance UX. 
 
 ![Rejuvenate Launch](/demo/1_intro.gif)
