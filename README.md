@@ -11,7 +11,7 @@ Rejuvenate is a skincare management app that is **built natively for iOS and  An
 ### Android Tech Stack
 **Languages**: Kotlin </br>
 **Architecture Pattern**: MVVM </br>
-**Jetpack Libraries**: Room, Material Design Components, DataBinding, Compose, Lifecycle, Navigation, RecyclerView, AppCompat, Fragment </br>
+**Jetpack Libraries**: Room, Material Design Components, DataBinding, Lifecycle, Navigation, RecyclerView, AppCompat, Fragment </br>
 **IDE**: Android Studio </br>
 
 ## Side-by-Side iOS and Android Demo
