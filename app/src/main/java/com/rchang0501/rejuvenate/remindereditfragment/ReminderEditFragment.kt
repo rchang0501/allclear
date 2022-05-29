@@ -24,14 +24,17 @@ class ReminderEditFragment : Fragment() {
     lateinit var reminder: Reminder
     private var reminderIsCompleted: Boolean = false
 
+    // instantiate view model
     private val viewModel: RejuvenateViewModel by activityViewModels {
         RejuvenateViewModelFactory(
             (activity?.application as RejuvenateApplication).database.reminderDao()
         )
     }
 
+    // set up navigation between fragments
     private val navigationArgs: ReminderEditFragmentArgs by navArgs()
 
+    // set up data binding
     private var _binding: ReminderEditFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -47,13 +50,17 @@ class ReminderEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // id of the reminder we are showing information about
         val id = navigationArgs.reminderId
 
+        // button to show the time picker dialogue
         binding.editReminderTimeButton.setOnClickListener {
             showTimePickerDialog()
         }
 
+        // if there is an id value that means we show the edit version, other wise it's the add version
         if (id > 0) {
+            // cancel button would navigate back to the reminder's detail fragment
             binding.toolbarCancelButton.setOnClickListener {
                 val action =
                     ReminderEditFragmentDirections.actionReminderEditFragmentToReminderDetailFragment(
@@ -71,9 +78,8 @@ class ReminderEditFragment : Fragment() {
                 bind(reminder)
             }
         } else {
+            // navigate back to the home screen when the cancel button is pressed
             binding.toolbarCancelButton.setOnClickListener {
-                //val action = ReminderEditFragmentDirections.actionReminderEditFragmentToReminderListFragment()
-                //this.findNavController().navigate(action)
                 this.findNavController().navigateUp()
             }
             binding.toolbarDoneButton.setOnClickListener {
@@ -82,6 +88,7 @@ class ReminderEditFragment : Fragment() {
             binding.toolbarTitle.text = getString(R.string.add_reminder)
         }
 
+        // update the date and time in the ui
         viewModel.setTempReminderDueDate(Calendar.getInstance())
         viewModel.tempReminderDueDateTime.observe(this.viewLifecycleOwner) {
             binding.apply {
@@ -108,6 +115,7 @@ class ReminderEditFragment : Fragment() {
         _binding = null
     }
 
+    // helper function to bind edit mode's reminder details
     private fun bind(reminder: Reminder) {
         binding.apply {
             reminderTitle.setText(reminder.title, TextView.BufferType.SPANNABLE)
@@ -119,12 +127,14 @@ class ReminderEditFragment : Fragment() {
         }
     }
 
+    // checks if the requested entry has a title
     private fun isEntryValid(): Boolean {
         return viewModel.isEntryValid(
             binding.reminderTitle.text.toString(),
         )
     }
 
+    // for edit mode - updates the current reminder entry in database
     private fun updateReminder() {
         if (isEntryValid()) {
             viewModel.updateReminder(
@@ -138,6 +148,7 @@ class ReminderEditFragment : Fragment() {
         }
     }
 
+    // for add mode - adds a new reminder entry in the database
     private fun addNewReminder() {
         if (isEntryValid()) {
             viewModel.addNewReminder(
@@ -151,6 +162,7 @@ class ReminderEditFragment : Fragment() {
         }
     }
 
+    // function to call the time picker fragment
     private fun showTimePickerDialog() {
         TimePickerFragment().show(this.childFragmentManager, "timePicker")
     }
