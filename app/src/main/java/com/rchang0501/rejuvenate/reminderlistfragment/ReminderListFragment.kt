@@ -2,7 +2,6 @@ package com.rchang0501.rejuvenate.reminderlistfragment
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,22 +16,25 @@ import com.rchang0501.rejuvenate.data.Reminder
 import com.rchang0501.rejuvenate.databinding.ReminderListFragmentBinding
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModel
 import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModelFactory
-import kotlin.math.roundToInt
 
 class ReminderListFragment : Fragment() {
 
+    // instantiate view model
     val viewModel: RejuvenateViewModel by activityViewModels {
         RejuvenateViewModelFactory(
             (activity?.application as RejuvenateApplication).database.reminderDao()
         )
     }
 
+    // track the filtered list and all items in the current list
     private var filteredList: List<Reminder>? = null
     private var currentList: List<Reminder>? = null
 
+    // track number of items selected for progress animations
     private var progress: Int = 0
     private var oldProgress: Int = 0
 
+    // view binding to layout
     private var _binding: ReminderListFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -49,8 +51,10 @@ class ReminderListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // get the current list
         currentList = viewModel.allReminders.value
 
+        // set the new progress view's max value based othe current list
         binding.apply {
             progressView.max = currentList?.size ?: 100
             progressView.progress = currentList?.filter {
@@ -58,12 +62,14 @@ class ReminderListFragment : Fragment() {
             }?.size ?: 0
         }
 
+        // bind the + button in home screen
         binding.toolbarAddButton.setOnClickListener {
             val action =
                 ReminderListFragmentDirections.actionReminderListFragmentToReminderEditFragment()
             this.findNavController().navigate(action)
         }
 
+        // bind segmented control to filter lists
         binding.segmentedControlGroup.setOnSelectedOptionChangeCallback { selectedIndex ->
             if (selectedIndex == 0) {
                 viewModel.setReminderFilterMode(ReminderFilterMode.TODAY)
@@ -74,6 +80,7 @@ class ReminderListFragment : Fragment() {
             }
         }
 
+        // set up recycler view adapter
         val adapter = ReminderListAdapter(viewModel) {
             val action =
                 ReminderListFragmentDirections.actionReminderListFragmentToReminderDetailFragment(it.id)
@@ -81,12 +88,14 @@ class ReminderListFragment : Fragment() {
         }
         binding.recyclerView.adapter = adapter
 
+        // observe all reminders
         viewModel.allReminders.observe(this.viewLifecycleOwner) { reminders ->
             currentList = reminders
             updateList(adapter)
             updateProgressViewWithAnim()
         }
 
+        // observe the current filter mode
         viewModel.reminderFilterMode.observe(this.viewLifecycleOwner) {
             oldProgress = binding.progressView.progress
 
@@ -96,24 +105,14 @@ class ReminderListFragment : Fragment() {
                 false
             )
             updateProgressViewWithoutAnim()
-            //updateProgressView()
-            //updateProgressViewWithAnim()
-            //binding.recyclerView.smoothScrollToPosition(0)
         }
 
+        // call swipe handler to delete reminders
         swipeHandler()
     }
 
-    /*
-    override fun onDestroyView() {
-        viewModel.allReminders.removeObservers(this.viewLifecycleOwner)
-        viewModel.allReminders.removeObservers(this.viewLifecycleOwner)
-
-        super.onDestroyView()
-    }*/
-
+    // Swipe handler to delete items from the list
     private fun swipeHandler() {
-        // Swipe handler to delete items from the list
         val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
             ItemTouchHelper.SimpleCallback(
                 0,
@@ -139,6 +138,7 @@ class ReminderListFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
     }
 
+    // update the displayed list based on the filter mode
     private fun updateList(adapter: ReminderListAdapter) {
         if (viewModel.reminderFilterMode.value == ReminderFilterMode.TODAY) {
             filteredList = currentList?.filter {
@@ -154,6 +154,7 @@ class ReminderListFragment : Fragment() {
         adapter.submitList(filteredList)
     }
 
+    // animate progress view
     @RequiresApi(Build.VERSION_CODES.N)
     private fun updateProgressViewWithAnim() {
         binding.progressView.max = filteredList?.size ?: 100
@@ -165,6 +166,7 @@ class ReminderListFragment : Fragment() {
         binding.progressView.setProgress(progress, true)
     }
 
+    // alt version of animating when switching between filter modes
     private fun updateProgressViewWithoutAnim() {
         binding.progressView.max = filteredList?.size ?: 100
 
@@ -173,33 +175,5 @@ class ReminderListFragment : Fragment() {
         }?.size ?: 0
 
         binding.progressView.progress = progress
-    }
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    private fun updateProgressView() {
-        var newMax = filteredList?.size ?: 100
-        var newProgress = filteredList?.filter {
-            it.isComplete
-        }?.size ?: 0
-
-        var newMaxFloat: Double = newMax.toDouble()
-        var newProgressFloat: Double = newProgress.toDouble()
-
-        var diffProgress = oldProgress * (newProgressFloat/newMaxFloat)
-        var diffProgressInt: Int = diffProgress.roundToInt()
-        binding.progressView.setProgress(diffProgressInt, true)
-
-        Log.d("thing oldProgress", "$oldProgress")
-        Log.d("thing newProgress", "$newProgress")
-        Log.d("thing newMax", "$newMax")
-        Log.d("thing diffProgress", "$diffProgress")
-        Log.d("thing diffProgressInt", "$diffProgressInt")
-        Log.d("thing space", "")
-
-        // after animation change
-        //binding.progressView.max = newMax
-        //progress = newProgress
-
-        //binding.progressView.progress = progress
     }
 }
