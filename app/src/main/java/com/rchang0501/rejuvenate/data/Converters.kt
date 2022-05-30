@@ -8,7 +8,7 @@ class Converters {
     fun fromTimestamp(value: Long?): Calendar? {
         if (value != null) {
             val c = Calendar.getInstance()
-            c.timeInMillis = value!!
+            c.timeInMillis = value
             return c
         }
         return null
