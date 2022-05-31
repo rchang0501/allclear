@@ -20,9 +20,11 @@ class MainActivity : AppCompatActivity() {
         // this sets the view to edge-to-edge so the navbar and toolbar are hidden
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
+        // view binding
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // instantiate navigation manager
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
