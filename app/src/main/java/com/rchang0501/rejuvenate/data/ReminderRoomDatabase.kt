@@ -15,6 +15,7 @@ abstract class ReminderRoomDatabase: RoomDatabase() {
         @Volatile //ensures changes made to instance from one thread is visible to all other threads immediately
         private var INSTANCE: ReminderRoomDatabase? = null
 
+        // helper function to instantiate/retrieve the database
         fun getDatabase(context: Context): ReminderRoomDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(context.applicationContext, ReminderRoomDatabase::class.java, "reminder_database")
