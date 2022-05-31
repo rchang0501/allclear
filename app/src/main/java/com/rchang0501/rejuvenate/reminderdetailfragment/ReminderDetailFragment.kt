@@ -16,16 +16,20 @@ import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModelFactory
 
 class ReminderDetailFragment : Fragment() {
 
+    // current reminder being referenced
     lateinit var reminder: Reminder
 
+    // instantiate view model
     private val viewModel: RejuvenateViewModel by activityViewModels {
         RejuvenateViewModelFactory(
             (activity?.application as RejuvenateApplication).database.reminderDao()
         )
     }
 
+    // navigation argument from nav_graph that contains the reminder id we are referencing
     private val navigationArgs: ReminderDetailFragmentArgs by navArgs()
 
+    // view binding
     private var _binding: ReminderDetailFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -41,8 +45,10 @@ class ReminderDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // reminder id from nav args
         val id = navigationArgs.reminderId
 
+        // bind edit button and navigate to edit fragment
         binding.toolbarEditButton.setOnClickListener {
             val action =
                 ReminderDetailFragmentDirections.actionReminderDetailFragmentToReminderEditFragment(
@@ -51,16 +57,19 @@ class ReminderDetailFragment : Fragment() {
             this.findNavController().navigate(action)
         }
 
+        // pop up to list fragment
         binding.toolbarBackButton.setOnClickListener {
             this.findNavController().navigateUp()
         }
 
+        // observe changes to the selected reminder and update the ui
         viewModel.retrieveReminder(id).observe(this.viewLifecycleOwner) { selectedReminder ->
             reminder = selectedReminder
             bind(reminder)
         }
     }
 
+    // helper function to update the ui
     private fun bind(reminder: Reminder) {
         binding.apply {
             reminderTitle.text = reminder.title
