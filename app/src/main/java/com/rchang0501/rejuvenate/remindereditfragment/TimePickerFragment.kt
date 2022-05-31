@@ -15,16 +15,19 @@ import com.rchang0501.rejuvenate.viewmodels.RejuvenateViewModelFactory
 
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
+    // instatiate view model
     private val viewModel: RejuvenateViewModel by activityViewModels {
         RejuvenateViewModelFactory(
             (activity?.application as RejuvenateApplication).database.reminderDao()
         )
     }
 
+    // creates a time picker dialogue
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         Log.d("dialogue", "${viewModel.tempReminderDueDateTimeText()}")
 
+        // retrieves the current time/selected time (based on add/edit fragment) from the view model
         val hour = viewModel.getTempReminderDueDateHour()
         val minute = viewModel.getTempReminderDueDateMinute()
 
@@ -39,9 +42,8 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
         )
     }
 
+    // update the set time in view model based on selection
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
-        // Do something with the time chosen by the user
-
         viewModel.setTempReminderDueDateHour(hourOfDay)
         viewModel.setTempReminderDueDateMinute(minute)
     }
