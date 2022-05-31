@@ -15,6 +15,7 @@ class ReminderListAdapter(
     private val onReminderClicked: (Reminder) -> Unit
 ) : ListAdapter<Reminder, ReminderListAdapter.ReminderViewHolder>(DiffCallback) {
 
+    // represents the view of the row item, binds data to the ui
     class ReminderViewHolder(
         private val viewModel: RejuvenateViewModel,
         var binding: ReminderListItemBinding
@@ -35,6 +36,7 @@ class ReminderListAdapter(
         }
     }
 
+    // creates and inflates the reminder list item layout
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -45,6 +47,7 @@ class ReminderListAdapter(
         )
     }
 
+    // binds data to ui and sets navigation function upon click of recycler view holder
     override fun onBindViewHolder(holder: ReminderListAdapter.ReminderViewHolder, position: Int) {
         val current = getItem(position)
         holder.itemView.setOnClickListener {
@@ -54,6 +57,7 @@ class ReminderListAdapter(
         holder.bind(current)
     }
 
+    // diff call back to determine what values changed
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Reminder>() {
             override fun areItemsTheSame(oldReminder: Reminder, newReminder: Reminder): Boolean {
