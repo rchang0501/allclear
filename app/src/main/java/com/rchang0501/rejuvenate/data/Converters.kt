@@ -3,6 +3,7 @@ package com.rchang0501.rejuvenate.data
 import androidx.room.TypeConverter
 import java.util.*
 
+// converts Date type to Long type that can be interpreted by Room
 class Converters {
     @TypeConverter
     fun fromTimestamp(value: Long?): Calendar? {
