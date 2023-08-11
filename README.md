@@ -5,7 +5,7 @@ Skincare management Android application using Jetpack for UI/UX development and 
   <img src="/demo/rejuvenate_icon_circle-01.png" alt="rejuvenate_icon" width="150" height="150"/>
 </p>
 
-### Android Tech Stack
+### Tech Stack
 **Languages**: Kotlin </br>
 **Architecture Pattern**: MVVM </br>
 **Jetpack Libraries**: Room, Material Design Components, DataBinding, Lifecycle, Navigation, RecyclerView, AppCompat, Fragment </br>
