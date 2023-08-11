@@ -1,12 +1,9 @@
-# Rejuvenate-Android
+# allclear
 Skincare management Android application using Jetpack for UI/UX development and Room for data handling. Employs modern Kotlin development principles and the MVVM architecture pattern.
 
 <p align="center">
   <img src="/demo/rejuvenate_icon_circle-01.png" alt="rejuvenate_icon" width="150" height="150"/>
 </p>
-
-### About Rejuvenate
-Rejuvenate is a skincare management app that is **built natively for iOS and  Android.** The goal of the application is to enable the user to effectively manage their skincare routine; specifying the product to use, the date and time to use it, as well as adding additional notes such as usage instructions. A skincare and wellness angle was taken to build this routine management app due to a growing intersection between mobile technologies and the beauty/wellness industry. Strong marketing efforts from industry giants such as Sephora have begun driving a trend of having your phone be the primary hub for beauty/wellness browsing and purchasing. Rejuvenate will thus benefit a wide audience of users to ensure they are scheduling and managing their routines to best meet their skincare goals. 
 
 ### Android Tech Stack
 **Languages**: Kotlin </br>
@@ -32,7 +29,7 @@ The top navbar can be used to filter the list of skincare reminders by the date 
 ![Rejuvenate Skincare Reminder Time Filters](/demo/3_scroll_through_other_times.gif)
 
 ### Add a new Skincare Reminder
-The following illustrates the process to add a new skincare reminder to Rejuvenate
+The following illustrates the process to add a new skincare reminder to allclear
 
 #### 1. Tap the `+` icon in the top right corner
 
@@ -69,7 +66,7 @@ Swiping a skincare reminder item to the left will delete it. Changes will persis
 
 ![Rejuvenate Skincare Reminder Delete](/demo/11_delete_reminder.gif)
 
-### Rejuvenate Dark Mode
-Rejuvenate has a fully operational dark mode and light mode. The app will automatically detect when the system enters dark/light mode and updates all views accordingly. To be concise, only the home screen's dark mode is demonstrated. 
+### Dark Mode
+allclear has a fully operational dark mode and light mode. The app will automatically detect when the system enters dark/light mode and updates all views accordingly. To be concise, only the home screen's dark mode is demonstrated. 
 
 ![Rejuvenate Dark Mode](/demo/12_dark_mode.gif)
